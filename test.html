@@ -1,0 +1,21 @@
+--- title: sample post author: dave ---
+<html>
+<head>
+<script type="text/javascript" src="resources/js/GitHub.bundle.min.js"></script>
+<script type="text/javascript" src="resources/js/utils.js"></script>
+</head>
+
+<script>
+	var auth_code = location.search.split('code=')[1] ? location.search
+			.split('code=')[1] : null;
+
+	console.log('access code is' + location.search.split('code=')[1])
+
+	if (auth_code != null) {
+
+		var auth_token = fetch_git_auth_token(client_id, client_secret,
+				auth_code);
+
+	}
+</script>
+</html>

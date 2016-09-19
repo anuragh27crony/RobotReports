@@ -1,0 +1,55 @@
+<html>
+<head>
+<script type="text/javascript" src="resources/js/GitHub.bundle.min.js"></script>
+<script type="text/javascript" src="resources/js/utils.js"></script>
+</head>
+<script>
+	function createCORSRequest(method, url) {
+		var xhr = new XMLHttpRequest();
+		if ("withCredentials" in xhr) {
+			// XHR for Chrome/Firefox/Opera/Safari.
+			xhr.open(method, url, true);
+		} else if (typeof XDomainRequest != "undefined") {
+			// XDomainRequest for IE.
+			xhr = new XDomainRequest();
+			xhr.open(method, url);
+		} else {
+			// CORS not supported.
+			xhr = null;
+		}
+		return xhr;
+	}
+
+	function git_url_auth_token(auth_code) {
+		var base_url = '';
+		return base_url + auth_code;
+	}
+
+	function git_fetch_auth_token(auth_code) {
+		var xhr = createCORSRequest('POST', git_url_auth_token(auth_code));
+		if (!xhr) {
+			throw new Error('CORS not supported');
+		}
+
+		xhr.send();
+
+		xhr.onload = function() {
+			if (xhr.status == 200) {
+				var responseText = xhr.responseText;
+				console.log(responseText);
+				// process the response.
+			}
+		};
+
+		return '';
+	}
+
+	var auth_code = location.search.split('code=')[1] ? location.search
+			.split('code=')[1] : null;
+
+	if (auth_code != null) {
+		auth_token = git_fetch_auth_token(auth_code);
+
+	}
+</script>
+</html>
