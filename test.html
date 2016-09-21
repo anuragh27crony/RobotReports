@@ -8,25 +8,6 @@
 	var auth_code = location.search.split('code=')[1] ? location.search
 			.split('code=')[1] : null;
 
-	//console.log('access code is' + location.search.split('code=')[1])
-	var failed_axis_label = [];
-	var passed_axis_label  = [];
-
-	failed_axis_label.push('Matrox 2008 Standard');
-	failed_axis_label.push('Matrox 2008 Web');
-	failed_axis_label.push('Osprey 2008 Standard');
-	failed_axis_label.push('Osprey 2008 Web');
-	failed_axis_label.push('Osprey 2012 Standard');
-
-	passed_axis_label.push('Matrox 2008 Standard');
-	passed_axis_label.push('Matrox 2008 Web');
-	passed_axis_label.push('Osprey 2008 Standard');
-	passed_axis_label.push('Osprey 2008 Web');
-	passed_axis_label.push('Osprey 2012 Standard');
-
-	console.log(failed_axis_label);
-	console.log(passed_axis_label);
-
 	if (auth_code != null) {
 		set_no_last_builds(3);
 		var auth_token = fetch_git_auth_token(client_id, client_secret,
